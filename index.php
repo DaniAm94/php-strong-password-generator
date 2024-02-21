@@ -4,9 +4,11 @@
 // session_destroy();
 // die();
 session_start();
+// Se in get è presente una chiave new(l'utente ha cliccato sul link per creare una nuova password) allora distruggi la sessione
 if(isset($_GET['new'])){
     session_destroy();
 }
+// Se è già presente una password tra le variabili di sessione allora vai alla pagina che mostra la password
 if(isset($_SESSION['password'])) header('Location: display_password.php');
 
 $password_length = $_GET['password-length'] ?? '';

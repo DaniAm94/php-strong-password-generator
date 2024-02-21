@@ -1,5 +1,6 @@
 <?php
 session_start();
+// Se non c'è alcuna password tra le variabili di sessione torna nell'idex.php
 if(!isset($_SESSION['password'])){
     header('Location: index.php');
 }
