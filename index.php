@@ -3,47 +3,22 @@ $password_length = $_GET['password-length'] ?? '';
 
 // Flag per stabilire se avere o no caratteri duplicati nella password
 $no_duplicates= true;
- // Array di lettere maiuscole
-$uppercase_letters = range('A','Z');
-// Array di lettere minuscole
-$lowercase_letters = range('a','z');
-// Array di numeri da 0 a 9
-$numbers= range(0,9);
-// Array di simboli scritti da me ç_ç (più o meno tutti)
-$symbols = ['.',',',';',':','!','?','-','<','>','/','*','+','=','%','&','$','£','#','@','€'];
-// Unisco tutti gli array di caratteri
-$characters= array_merge($uppercase_letters, $lowercase_letters, $numbers, $symbols);
-// Calcolo il numero totale di caratteri
-$num_of_characters= count($characters);
 
-/* 
-Funzione che restituisce una password
-argomenti: lunghezza password, array di caratteri , numero di caratteri, flag per i duplicati    
-*/
-function get_password ($pass_length, $characters, $noc, $no_dup){
-    $password=[];
-    while(count($password) < $pass_length){
-        $rand_character = $characters[rand(0,$noc)];
-        if($no_dup){
-            if(!in_array($rand_character, $password)){
-                $password[] = $rand_character;
-            }
-        }else{
-            $password[] = $rand_character;
-        }
-    }
-    return implode('',$password);
-}
+// Importo lo script con la funzione
+require __DIR__.'/scripts/scripts.php';
+
+
 if($password_length){
     echo "Lunghezza password: $password_length";
     echo '<br/>';
-    echo 'Password: '.get_password($password_length, $characters, $num_of_characters, $no_duplicates);
+    $password=get_password($password_length, $characters, $num_of_characters, $no_duplicates);
+    echo 'Password: '. $password;
 }
 
 ?>
 
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en" >
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
