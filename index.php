@@ -1,4 +1,14 @@
 <?php 
+
+// session_start();
+// session_destroy();
+// die();
+session_start();
+if(isset($_GET['new'])){
+    session_destroy();
+}
+if(isset($_SESSION['password'])) header('Location: display_password.php');
+
 $password_length = $_GET['password-length'] ?? '';
 
 // Flag per stabilire se avere o no caratteri duplicati nella password
@@ -8,17 +18,21 @@ $no_duplicates= true;
 require __DIR__.'/scripts/scripts.php';
 
 
+// Genero la password
 if($password_length){
     echo "Lunghezza password: $password_length";
     echo '<br/>';
     $password=get_password($password_length, $characters, $num_of_characters, $no_duplicates);
     echo 'Password: '. $password;
 }
-
+if(isset($password)){
+$_SESSION['password']= $password;
+    header('Location: ./display_password.php');
+}
 ?>
 
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
