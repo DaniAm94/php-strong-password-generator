@@ -9,10 +9,10 @@ argomenti: lunghezza password, array di caratteri , numero di caratteri, flag pe
 */
 function get_password ($pass_length, $characters, $noc, $no_dup){
     if(empty($noc)){
-        return 'Devi sceglire almeno un insieme di caratteri';
+        return ;
     }
     if($no_dup && $pass_length>$noc){
-        return 'La lunghezza della password non può superare il numero di caratteri';
+        return ;
     } 
     $password=[];
     while(count($password) < $pass_length){
