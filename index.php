@@ -14,7 +14,8 @@ if(isset($_SESSION['password'])) header('Location: display_password.php');
 $password_length = $_GET['password-length'] ?? '';
 
 // Flag per stabilire se avere o no caratteri duplicati nella password
-$no_duplicates= true;
+$no_duplicates= $_GET['no-duplicates'] ?? '';
+var_dump($no_duplicates);
 
 // Importo lo script con la funzione
 require __DIR__.'/scripts/scripts.php';
@@ -50,14 +51,15 @@ $_SESSION['password']= $password;
     </header>
     <main class="py-3">
         <div class="container-sm">
-        <form class="row g-3 needs-validation border rounded py-4" novalidate>
+        <form class="row g-3 needs-validation border rounded py-4 px-2 " novalidate>
   <div class="col-12 d-flex justify-content-between">
     <label for="pass-length" class="form-label">Lunghezza password</label>
     <input type="number" class="form-control w-25" id="pass-length" name="password-length" value="" required min="1" max="10">
-    <div class="valid-feedback">
-      Looks good!
-    </div>
   </div>
+    <div class="col-12 form-check form-switch d-flex justify-content-between ps-2">
+        <label class="form-check-label" for="char-dup">Disattiva la ripetizione di caratteri</label>
+        <input class="form-check-input" type="checkbox" role="switch" name="no-duplicates" id="char-dup">
+    </div>
   <div class="col-12">
     <button class="btn btn-primary" type="submit">Conferma</button>
     <button class="btn btn-warning" type="reset">Annulla</button>
