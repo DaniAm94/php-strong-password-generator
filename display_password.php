@@ -21,7 +21,11 @@ $password = $_SESSION['password'];
 <body>
 <div class="container-sm">
 <header class="d-flex justify-content-between py-4">
-    <h1>La tua password: <em><?= $password ?></em></h1>
+    <div class="alert alert-success text-center " role="alert">
+      <h2 class="alert-heading">Password generata con successo!</h2>
+      <hr>
+      <h4 class="mb-0 text-center">Ecco la tua password: <em><?= $password ?></em></h4>
+    </div>
     <a href="index.php?new=true">Crea una nuova password</a>
 </header>
 </div>
